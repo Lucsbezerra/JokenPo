@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -11,7 +10,7 @@ class _HomePageState extends State<HomePage> {
   var _imagemApp = AssetImage("imagens/padrao.png");
   var _mensagem = "Escolha uma opação abaixo";
 
-  void _opcaoSelecionada(String escolhaUsuaria) {
+  void _opcaoSelecionada(String escolhaUsuario) {
     var opcoes = ["pedra", "papel", "tesoura"];
     var numero = Random().nextInt(3);
     var escolhaApp = opcoes[numero];
@@ -32,23 +31,20 @@ class _HomePageState extends State<HomePage> {
           this._imagemApp = AssetImage("imagens/tesoura.png");
         });
         break;
-        //validando ganhador
-
-        if ((escolhaUsuaria == "pedra" && escolhaApp == "tesoura") ||
-            (escolhaUsuaria == "tesoura" && escolhaApp == "papel") ||
-            (escolhaUsuaria == "papel" && escolhaApp == "pedra")) {
-          setState(() {
-            this._mensagem = "Parabens você ganhou!";
-          });
-        } else((escolhaUsuaria == "tesoura" && escolhaApp == "pedra") ||
-            escolhaUsuaria == "papel" && escolhaApp == "tesoura" ||
-            escolhaUsuaria == "pedra" && escolhaApp == "papel") {
-          setState(() {
-            this._mensagem = "Parabens você perdeu!";
-          });
-        } else {
-          this._mensagem = "Empatamos!";
-        }
+    }
+    //validando ganhado
+    if ((escolhaApp == "pedra" && escolhaUsuario == "papel") ||
+        (escolhaApp == "papel" && escolhaUsuario == "tesoura") ||
+        (escolhaApp == "tesoura" && escolhaUsuario == "pedra")) {
+      setState(() {
+        _mensagem = "Parabéns, você ganhou";
+      });
+    } else if ((escolhaUsuario == "pedra" && escolhaApp == "papel") ||
+        (escolhaUsuario == "papel" && escolhaApp == "tesoura") ||
+        (escolhaUsuario == "tesoura" && escolhaApp == "pedra")) {
+      setState(() {
+        _mensagem = "Que pena....Voce perdeu";
+      });
     }
   }
 
